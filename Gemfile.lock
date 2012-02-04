@@ -12,6 +12,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     shoulda (2.11.3)
+    trollop (1.16.2)
 
 PLATFORMS
   ruby
@@ -21,3 +22,4 @@ DEPENDENCIES
   jeweler (~> 1.8.3)
   rdoc (~> 3.12)
   shoulda
+  trollop (~> 1.16)
