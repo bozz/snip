@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'snip'
+
+puts Snip.add(ARGV[0])
+
+
