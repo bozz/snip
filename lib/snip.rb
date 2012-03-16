@@ -28,5 +28,9 @@ module Snip
       file.write(content)
       file.close
     end
+
+    def self.show(name)
+      puts "test snippet"
+    end
   end
 end

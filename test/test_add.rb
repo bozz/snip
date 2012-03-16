@@ -21,4 +21,10 @@ class TestAdd < Test::Unit::TestCase
       Snip::Snippet::add("test", "this is another test")
     end
   end
+
+  def test_add_with_wrong_number_of_arguments
+    assert_raises ArgumentError do
+      Snip::Snippet::add("test")
+    end
+  end
 end

@@ -12,6 +12,9 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'fakefs'
 
+# workaround: see https://github.com/seattlerb/minitest/issues/69
+MiniTest::MINI_DIR = "lame"
+
 MiniTest::Unit.runner = MiniTest::SuiteRunner.new
 MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
 
