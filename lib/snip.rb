@@ -4,6 +4,7 @@ module Snip
 
   class NotInitializedError < StandardError ; end
   class DuplicateSnippetNameError < StandardError ; end
+  class SnippetNotFoundError < StandardError ; end
 
   def self.initialized?
     File.directory?(Snip::INSTALL_DIR)
@@ -30,7 +31,8 @@ module Snip
     end
 
     def self.show(name)
-      puts "test snippet"
+      raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
+      puts File.read(File.join(Snip::INSTALL_DIR, name))
     end
   end
 end

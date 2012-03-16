@@ -8,14 +8,19 @@ class TestShow < Test::Unit::TestCase
     # create home dir
     FileUtils.mkdir_p(File.expand_path('~'))
     Snip.init
-    Snip::Snippet::add("test", "test snippet")
-
-    sio = StringIO.new
-    old_stdout, $stdout = $stdout, sio
   end
 
   def test_show_existing_snippet
-    Snip::Snippet::show("test")
-    assert_match("test snippet", $stdout.string)
+    @snippet_text = "this is a test: #{Time.now.to_s}"
+    Snip::Snippet::add("test_snippet", @snippet_text)
+
+    Snip::Snippet::show("test_snippet")
+    assert_match(@snippet_text, $stdout.string)
+  end
+
+  def test_show_nonexisting_snippet
+    assert_raises Snip::SnippetNotFoundError do
+      Snip::Snippet::show("nonexisting_snippet")
+    end
   end
 end
