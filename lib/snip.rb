@@ -44,5 +44,11 @@ module Snip
         puts file if File.file?(file)
       end
     end
+
+    def self.remove(name)
+      raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
+
+      FileUtils.rm(File.join(Snip::INSTALL_DIR, name)) if Snip::Snippet::exists?(name)
+    end
   end
 end
