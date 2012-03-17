@@ -18,9 +18,6 @@ MiniTest::MINI_DIR = "lame"
 MiniTest::Unit.runner = MiniTest::SuiteRunner.new
 MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
 
-# redirect stdout to StringIO for testing
-$stdout = StringIO.new
-
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 

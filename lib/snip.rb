@@ -31,8 +31,18 @@ module Snip
     end
 
     def self.show(name)
+      raise NotInitializedError unless Snip::initialized?
       raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
+
       puts File.read(File.join(Snip::INSTALL_DIR, name))
+    end
+
+    def self.list
+      raise NotInitializedError unless Snip::initialized?
+
+      Dir.foreach(Snip::INSTALL_DIR) do |file|
+        puts file if File.file?(file)
+      end
     end
   end
 end

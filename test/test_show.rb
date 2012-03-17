@@ -8,6 +8,9 @@ class TestShow < Test::Unit::TestCase
     # create home dir
     FileUtils.mkdir_p(File.expand_path('~'))
     Snip.init
+
+    # redirect stdout to StringIO for testing
+    $stdout = StringIO.new
   end
 
   def test_show_existing_snippet

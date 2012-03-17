@@ -29,9 +29,21 @@ class TestInitialization < Test::Unit::TestCase
     assert_equal(true, File.directory?(Snip::INSTALL_DIR))
   end
 
-  def test_uninitialized_command_call
+  def test_uninitialized_add_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::add(false, false)
+      Snip::Snippet::add("test_snippet", "test snippet")
+    end
+  end
+
+  def test_uninitialized_show_call
+    assert_raises Snip::NotInitializedError do
+      Snip::Snippet::show("test_snippet")
+    end
+  end
+
+  def test_uninitialized_list_call
+    assert_raises Snip::NotInitializedError do
+      Snip::Snippet::list
     end
   end
 end
