@@ -2,12 +2,14 @@ PATH
   remote: .
   specs:
     snip (0.0.1)
+      gli (~> 1.4)
 
 GEM
   remote: http://rubygems.org/
   specs:
     ansi (1.4.2)
     fakefs (0.4.0)
+    gli (1.5.1)
     json (1.6.5)
     minitest (2.11.3)
     minitest-reporters (0.5.1)

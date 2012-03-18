@@ -17,7 +17,7 @@ require 'snip_version'
 
 include GLI
 
-program_desc 'Describe your application here'
+program_desc 'A command line snippet manager'
 
 version Snip::VERSION
 

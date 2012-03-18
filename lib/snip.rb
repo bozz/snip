@@ -6,6 +6,12 @@ module Snip
   class DuplicateSnippetNameError < StandardError ; end
   class SnippetNotFoundError < StandardError ; end
 
+
+  def self.open_editor(file_path)
+    puts "editor: #{$EDITOR}"
+    `vim "#{file_path}" 3>&1 1>&2 2>&3`
+  end
+
   def self.initialized?
     File.directory?(Snip::INSTALL_DIR)
   end
@@ -21,13 +27,18 @@ module Snip
       File.exists?(File.join(Snip::INSTALL_DIR, name))
     end
 
-    def self.add(name, content)
+    def self.add(name, content=nil)
       raise NotInitializedError unless Snip::initialized?
       raise DuplicateSnippetNameError if Snip::Snippet::exists?(name)
 
-      file = File.new(File.join(Snip::INSTALL_DIR, name),'w')
-      file.write(content)
-      file.close
+      file_path = File.join(Snip::INSTALL_DIR, name)
+      if content.nil?
+        # Snip::open_editor(file_path)
+      else
+        file = File.new(file_path, 'w')
+        file.write(content)
+        file.close
+      end
     end
 
     def self.show(name)
