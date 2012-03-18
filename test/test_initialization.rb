@@ -46,4 +46,10 @@ class TestInitialization < Test::Unit::TestCase
       Snip::Snippet::list
     end
   end
+
+  def test_uninitialized_remove_call
+    assert_raises Snip::NotInitializedError do
+      Snip::Snippet::remove("test_snippet")
+    end
+  end
 end

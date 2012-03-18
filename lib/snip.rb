@@ -46,6 +46,7 @@ module Snip
     end
 
     def self.remove(name)
+      raise NotInitializedError unless Snip::initialized?
       raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
 
       FileUtils.rm(File.join(Snip::INSTALL_DIR, name)) if Snip::Snippet::exists?(name)
