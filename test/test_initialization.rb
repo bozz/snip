@@ -1,6 +1,7 @@
 require 'helper'
 
 class TestInitialization < Test::Unit::TestCase
+  include Snip::Commands
   include FakeFS
 
   def setup
@@ -31,7 +32,7 @@ class TestInitialization < Test::Unit::TestCase
 
   def test_uninitialized_add_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::add(["test_snippet", "test snippet"])
+      add_snippet(["test", "this is a test"])
     end
   end
 

@@ -13,6 +13,8 @@ spec = Gem::Specification.new do |s|
 bin/snip
 lib/snip.rb
 lib/snip_version.rb
+lib/snip/commands.rb
+lib/snip/command/add.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = true

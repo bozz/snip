@@ -1,6 +1,7 @@
 require 'helper'
 
 class TestShow < Test::Unit::TestCase
+  include Snip::Commands
   include FakeFS
 
   def setup
@@ -15,7 +16,7 @@ class TestShow < Test::Unit::TestCase
 
   def test_show_existing_snippet
     @snippet_text = "this is a test: #{Time.now.to_s}"
-    Snip::Snippet::add(["test_snippet", @snippet_text])
+    add_snippet(["test_snippet", @snippet_text])
 
     Snip::Snippet::show(["test_snippet"])
     assert_match(@snippet_text, $stdout.string)

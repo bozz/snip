@@ -1,6 +1,7 @@
 require 'helper'
 
 class TestRemove < Test::Unit::TestCase
+  include Snip::Commands
   include FakeFS
 
   def setup
@@ -14,7 +15,7 @@ class TestRemove < Test::Unit::TestCase
   end
 
   def test_remove_existing_snippet
-    Snip::Snippet::add(["snippet1", "first snippet"])
+    add_snippet(["snippet1", "first snippet"])
 
     Snip::Snippet::remove(["snippet1"])
     assert_equal(false, Snip::Snippet::exists?("snippet1"))

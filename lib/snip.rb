@@ -28,21 +28,21 @@ module Snip
       File.exists?(File.join(Snip::INSTALL_DIR, name))
     end
 
-    def self.add(args, options={})
-      name, content = args
-      raise NotInitializedError unless Snip::initialized?
-      raise DuplicateSnippetNameError if Snip::Snippet::exists?(name)
+    # def self.add(args, options={})
+    #   name, content = args
+    #   raise NotInitializedError unless Snip::initialized?
+    #   raise DuplicateSnippetNameError if Snip::Snippet::exists?(name)
 
-      file_path = File.join(Snip::INSTALL_DIR, name)
-      if content.nil?
-        raise ArgumentError
-        # Snip::open_editor(file_path)
-      else
-        File.open(file_path, 'w') do |f|
-          f.puts content
-        end
-      end
-    end
+    #   file_path = File.join(Snip::INSTALL_DIR, name)
+    #   if content.nil?
+    #     raise ArgumentError
+    #     # Snip::open_editor(file_path)
+    #   else
+    #     File.open(file_path, 'w') do |f|
+    #       f.puts content
+    #     end
+    #   end
+    # end
 
     def self.show(args, options={})
       name = args

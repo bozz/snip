@@ -16,6 +16,8 @@ require 'gli'
 require 'snip'
 require 'snip_version'
 
+require 'snip/command/add'
+
 include GLI
 
 program_desc 'A command line snippet manager'
@@ -43,18 +45,6 @@ on_error do |exception|
   # Error logic here
   # return false to skip default error handling
   true
-end
-
-desc 'add new snippet'
-command :add do |c|
-  # c.desc 'add new snippet'
-  # c.flag :m
-
-  c.action do |global_options,options,arguments|
-    a = arguments.first
-
-    Snip::Snippet::add(arguments, options)
-  end
 end
 
 exit GLI.run(ARGV)
