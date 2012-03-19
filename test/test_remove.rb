@@ -14,15 +14,15 @@ class TestRemove < Test::Unit::TestCase
   end
 
   def test_remove_existing_snippet
-    Snip::Snippet::add("snippet1", "first snippet")
+    Snip::Snippet::add(["snippet1", "first snippet"])
 
-    Snip::Snippet::remove("snippet1")
+    Snip::Snippet::remove(["snippet1"])
     assert_equal(false, Snip::Snippet::exists?("snippet1"))
   end
 
   def test_remove_nonexisting_snippet
     assert_raises Snip::SnippetNotFoundError do
-      Snip::Snippet::remove("nonexisting_snippet")
+      Snip::Snippet::remove(["nonexisting_snippet"])
     end
   end
 end

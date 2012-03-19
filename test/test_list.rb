@@ -14,8 +14,8 @@ class TestList < Test::Unit::TestCase
   end
 
   def test_list_existing_snippets
-    Snip::Snippet::add("snippet1", "first snippet")
-    Snip::Snippet::add("snippet2", "second snippet")
+    Snip::Snippet::add(["snippet1", "first snippet"])
+    Snip::Snippet::add(["snippet2", "second snippet"])
 
     Snip::Snippet::list
     assert_match("snippet1", $stdout.string)

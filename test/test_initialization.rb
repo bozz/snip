@@ -31,13 +31,13 @@ class TestInitialization < Test::Unit::TestCase
 
   def test_uninitialized_add_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::add("test_snippet", "test snippet")
+      Snip::Snippet::add(["test_snippet", "test snippet"])
     end
   end
 
   def test_uninitialized_show_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::show("test_snippet")
+      Snip::Snippet::show(["test_snippet"])
     end
   end
 

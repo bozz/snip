@@ -1,6 +1,7 @@
 module Snip
 
-  INSTALL_DIR = '~/.snip'
+  DEFAULT_DIR = '~/.snip'
+  INSTALL_DIR = File.expand_path(Snip::DEFAULT_DIR)
 
   class NotInitializedError < StandardError ; end
   class DuplicateSnippetNameError < StandardError ; end
@@ -27,36 +28,41 @@ module Snip
       File.exists?(File.join(Snip::INSTALL_DIR, name))
     end
 
-    def self.add(name, content=nil)
+    def self.add(args, options={})
+      name, content = args
       raise NotInitializedError unless Snip::initialized?
       raise DuplicateSnippetNameError if Snip::Snippet::exists?(name)
 
       file_path = File.join(Snip::INSTALL_DIR, name)
       if content.nil?
+        raise ArgumentError
         # Snip::open_editor(file_path)
       else
-        file = File.new(file_path, 'w')
-        file.write(content)
-        file.close
+        File.open(file_path, 'w') do |f|
+          f.puts content
+        end
       end
     end
 
-    def self.show(name)
+    def self.show(args, options={})
+      name = args
       raise NotInitializedError unless Snip::initialized?
       raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
 
       puts File.read(File.join(Snip::INSTALL_DIR, name))
     end
 
-    def self.list
+    def self.list(args=[], options={})
       raise NotInitializedError unless Snip::initialized?
 
       Dir.foreach(Snip::INSTALL_DIR) do |file|
-        puts file if File.file?(file)
+        next if file == '.' or file == '..'
+        puts "#{file}"
       end
     end
 
-    def self.remove(name)
+    def self.remove(args, options={})
+      name = args
       raise NotInitializedError unless Snip::initialized?
       raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
 

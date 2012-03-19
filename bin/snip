@@ -13,6 +13,7 @@ end
 $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'rubygems'
 require 'gli'
+require 'snip'
 require 'snip_version'
 
 include GLI
@@ -21,33 +22,39 @@ program_desc 'A command line snippet manager'
 
 version Snip::VERSION
 
-desc 'Describe some switch here'
-switch [:s,:switch]
-
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f,:flagname]
-
 pre do |global,command,options,args|
-  # Pre logic here
-  # Return true to proceed; false to abort and not call the
-  # chosen command
-  # Use skips_pre before a command to skip this block
-  # on that command only
-  true
-end
-
-post do |global,command,options,args|
-  # Post logic here
-  # Use skips_post before a command to skip this
-  # block on that command only
+  if Snip::initialized?
+    true
+  else
+    puts "This seems to be the first time snip is run on this computer."
+    puts "Should #{Snip::INSTALL_DIR} be created? (Yn)"
+    check = $stdin.gets.chomp
+    if check == 'Y'
+      Snip::init
+      true
+    else
+      puts "aborting..."
+      false
+    end
+  end
 end
 
 on_error do |exception|
   # Error logic here
   # return false to skip default error handling
   true
+end
+
+desc 'add new snippet'
+command :add do |c|
+  # c.desc 'add new snippet'
+  # c.flag :m
+
+  c.action do |global_options,options,arguments|
+    a = arguments.first
+
+    Snip::Snippet::add(arguments, options)
+  end
 end
 
 exit GLI.run(ARGV)

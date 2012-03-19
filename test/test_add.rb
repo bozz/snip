@@ -11,12 +11,12 @@ class TestAdd < Test::Unit::TestCase
   end
 
   def test_add_new_snippet
-    Snip::Snippet::add("test", "this is a test")
+    Snip::Snippet::add(["test", "this is a test"])
     assert_equal(true, File.exists?(File.join(Snip::INSTALL_DIR, 'test')))
   end
 
   def test_add_with_duplicate_name
-    Snip::Snippet::add("test", "this is a test")
+    Snip::Snippet::add(["test", "this is a test"])
     assert_raises Snip::DuplicateSnippetNameError do
       Snip::Snippet::add("test", "this is another test")
     end
@@ -24,7 +24,7 @@ class TestAdd < Test::Unit::TestCase
 
   def test_add_with_wrong_number_of_arguments
     assert_raises ArgumentError do
-      Snip::Snippet::add("test")
+      Snip::Snippet::add(["test"])
     end
   end
 end
