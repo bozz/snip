@@ -38,19 +38,19 @@ class TestInitialization < Test::Unit::TestCase
 
   def test_uninitialized_show_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::show(["test_snippet"])
+      show_snippet(["test_snippet"])
     end
   end
 
   def test_uninitialized_list_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::list
+      list_snippets
     end
   end
 
   def test_uninitialized_remove_call
     assert_raises Snip::NotInitializedError do
-      Snip::Snippet::remove("test_snippet")
+      remove_snippet(["test_snippet"])
     end
   end
 end

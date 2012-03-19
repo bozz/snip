@@ -23,9 +23,9 @@ class TestAdd < Test::Unit::TestCase
     end
   end
 
-  def test_add_with_wrong_number_of_arguments
-    assert_raises ArgumentError do
-      add_snippet(["test"])
-    end
+  def test_add_with_one_arguments
+    skip
+    # TODO: need to mock Snip::open_editor method to test this
+    # add_snippet(["test"])
   end
 end

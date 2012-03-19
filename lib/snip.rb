@@ -9,7 +9,6 @@ module Snip
 
 
   def self.open_editor(file_path)
-    puts "editor: #{$EDITOR}"
     `vim "#{file_path}" 3>&1 1>&2 2>&3`
   end
 
@@ -23,50 +22,7 @@ module Snip
     end
   end
 
-  class Snippet
-    def self.exists?(name)
-      File.exists?(File.join(Snip::INSTALL_DIR, name))
-    end
-
-    # def self.add(args, options={})
-    #   name, content = args
-    #   raise NotInitializedError unless Snip::initialized?
-    #   raise DuplicateSnippetNameError if Snip::Snippet::exists?(name)
-
-    #   file_path = File.join(Snip::INSTALL_DIR, name)
-    #   if content.nil?
-    #     raise ArgumentError
-    #     # Snip::open_editor(file_path)
-    #   else
-    #     File.open(file_path, 'w') do |f|
-    #       f.puts content
-    #     end
-    #   end
-    # end
-
-    def self.show(args, options={})
-      name = args
-      raise NotInitializedError unless Snip::initialized?
-      raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
-
-      puts File.read(File.join(Snip::INSTALL_DIR, name))
-    end
-
-    def self.list(args=[], options={})
-      raise NotInitializedError unless Snip::initialized?
-
-      Dir.foreach(Snip::INSTALL_DIR) do |file|
-        next if file == '.' or file == '..'
-        puts "#{file}"
-      end
-    end
-
-    def self.remove(args, options={})
-      name = args
-      raise NotInitializedError unless Snip::initialized?
-      raise SnippetNotFoundError unless Snip::Snippet::exists?(name)
-
-      FileUtils.rm(File.join(Snip::INSTALL_DIR, name)) if Snip::Snippet::exists?(name)
-    end
+  def self.snippet_exists?(name)
+    File.exists?(File.join(Snip::INSTALL_DIR, name))
   end
 end

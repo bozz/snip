@@ -15,14 +15,15 @@ require 'rubygems'
 require 'gli'
 require 'snip'
 require 'snip_version'
-
-require 'snip/command/add'
+require 'snip/commands'
 
 include GLI
+include Snip::Commands
 
 program_desc 'A command line snippet manager'
 
 version Snip::VERSION
+
 
 pre do |global,command,options,args|
   if Snip::initialized?
@@ -41,10 +42,56 @@ pre do |global,command,options,args|
   end
 end
 
+
 on_error do |exception|
   # Error logic here
   # return false to skip default error handling
   true
+end
+
+
+desc 'List snippets'
+long_desc <<EOS
+  List all existing snippets
+EOS
+command :list do |c|
+  c.action do |global_options,options,arguments|
+    list_snippets(arguments, options)
+  end
+end
+
+
+desc 'Show specific snippet'
+long_desc <<EOS
+  Display the specified snippet.
+EOS
+arg_name 'snippet_name'
+command :show do |c|
+  c.action do |global_options,options,arguments|
+    show_snippet(arguments, options)
+  end
+end
+
+
+desc 'Remove specific snippet'
+arg_name 'snippet_name'
+command [:remove, :rm] do |c|
+  c.action do |global_options,options,arguments|
+    remove_snippet(arguments, options)
+  end
+end
+
+
+desc 'Add a new snippet'
+long_desc <<EOS
+  The first argument is required and is the name of the new snippet. The second argument is the actual snippet itself, should be a string. If the second argument is not supplied then the configured editor ($EDITOR) will be opened and will be saved when saved in editor.
+  Example: snip add dirsize "du -ch | grep total"
+EOS
+arg_name 'snippet_name'
+command :add do |c|
+  c.action do |global_options,options,arguments|
+    add_snippet(arguments, options)
+  end
 end
 
 exit GLI.run(ARGV)

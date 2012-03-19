@@ -18,13 +18,13 @@ class TestList < Test::Unit::TestCase
     add_snippet(["snippet1", "first snippet"])
     add_snippet(["snippet2", "second snippet"])
 
-    Snip::Snippet::list
+    list_snippets
     assert_match("snippet1", $stdout.string)
     assert_match("snippet2", $stdout.string)
   end
 
   def test_list_no_snippets
-    Snip::Snippet::list
+    list_snippets
     assert_empty($stdout.string)
   end
 end

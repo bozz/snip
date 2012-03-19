@@ -18,13 +18,13 @@ class TestShow < Test::Unit::TestCase
     @snippet_text = "this is a test: #{Time.now.to_s}"
     add_snippet(["test_snippet", @snippet_text])
 
-    Snip::Snippet::show(["test_snippet"])
+    show_snippet(["test_snippet"])
     assert_match(@snippet_text, $stdout.string)
   end
 
   def test_show_nonexisting_snippet
     assert_raises Snip::SnippetNotFoundError do
-      Snip::Snippet::show(["nonexisting_snippet"])
+      show_snippet(["nonexisting_snippet"])
     end
   end
 end
