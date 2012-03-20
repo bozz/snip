@@ -1,4 +1,5 @@
 require 'snip'
+require 'snip/util/editor'
 
 module Snip
   module Command
@@ -17,7 +18,7 @@ module Snip
 
         file_path = File.join(Snip::INSTALL_DIR, name)
         if content.nil?
-          Snip::open_editor(file_path)
+          Snip::Util::Editor::open(file_path)
         else
           File.open(file_path, 'w') do |f|
             f.puts content

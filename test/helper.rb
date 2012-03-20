@@ -10,7 +10,6 @@ end
 require 'test/unit'
 require 'minitest/autorun'
 require 'minitest/reporters'
-require 'minitest/mock'
 require 'fakefs'
 
 # workaround: see https://github.com/seattlerb/minitest/issues/69

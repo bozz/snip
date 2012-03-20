@@ -7,11 +7,6 @@ module Snip
   class DuplicateSnippetNameError < StandardError ; end
   class SnippetNotFoundError < StandardError ; end
 
-
-  def self.open_editor(file_path)
-    `vim "#{file_path}" 3>&1 1>&2 2>&3`
-  end
-
   def self.initialized?
     File.directory?(Snip::INSTALL_DIR)
   end

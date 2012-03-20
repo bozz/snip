@@ -1,5 +1,21 @@
 require 'helper'
 
+# Override Snip::Util::Editor::open for testing, replacing
+# with alternative implementation that simply creates file
+# without opening text editor.
+module Snip
+  module Util
+    class Editor
+      class << self
+        include Snip::Commands
+        def open(file_path)
+          add_snippet(["test", "this is a test"])
+        end
+      end
+    end
+  end
+end
+
 class TestAdd < Test::Unit::TestCase
   include Snip::Commands
   include FakeFS
@@ -24,8 +40,7 @@ class TestAdd < Test::Unit::TestCase
   end
 
   def test_add_with_one_arguments
-    skip
-    # TODO: need to mock Snip::open_editor method to test this
-    # add_snippet(["test"])
+    add_snippet(["test"])
+    assert_equal(true, File.exists?(File.join(Snip::INSTALL_DIR, 'test')))
   end
 end

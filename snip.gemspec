@@ -18,6 +18,7 @@ lib/snip/command/list.rb
 lib/snip/command/show.rb
 lib/snip/command/add.rb
 lib/snip/command/remove.rb
+lib/snip/util/editor.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = true
