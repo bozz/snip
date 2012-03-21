@@ -1,6 +1,7 @@
 require 'snip/command/list'
 require 'snip/command/show'
 require 'snip/command/add'
+require 'snip/command/run'
 require 'snip/command/remove'
 
 module Snip
@@ -15,6 +16,10 @@ module Snip
 
     def add_snippet(args, options={})
       Snip::Command::Add.new(args, options).execute
+    end
+
+    def run_snippet(args, options={})
+      Snip::Command::Run.new(args, options).execute
     end
 
     def remove_snippet(args, options={})

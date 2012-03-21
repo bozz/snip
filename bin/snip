@@ -61,7 +61,7 @@ command :list do |c|
 end
 
 
-desc 'Show specific snippet'
+desc 'Show snippet'
 long_desc <<EOS
   Display the specified snippet.
 EOS
@@ -73,7 +73,19 @@ command :show do |c|
 end
 
 
-desc 'Remove specific snippet'
+desc 'Run snippet'
+long_desc <<EOS
+  Run the specified snippet.
+EOS
+arg_name 'snippet_name'
+command :run do |c|
+  c.action do |global_options,options,arguments|
+    run_snippet(arguments, options)
+  end
+end
+
+
+desc 'Remove snippet'
 arg_name 'snippet_name'
 command [:remove, :rm] do |c|
   c.action do |global_options,options,arguments|

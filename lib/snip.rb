@@ -6,6 +6,7 @@ module Snip
   class NotInitializedError < StandardError ; end
   class DuplicateSnippetNameError < StandardError ; end
   class SnippetNotFoundError < StandardError ; end
+  class ExecuteSnippetError < StandardError ; end
 
   def self.initialized?
     File.directory?(Snip::INSTALL_DIR)
