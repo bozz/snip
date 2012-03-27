@@ -1,6 +1,0 @@
-= snip
-
-Describe your project here
-
-:include:snip.rdoc
-

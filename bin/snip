@@ -75,7 +75,7 @@ end
 
 desc 'Run snippet'
 long_desc <<EOS
-  Run the specified snippet.
+  Execute the specified snippet.
 EOS
 arg_name 'snippet_name'
 command :run do |c|
