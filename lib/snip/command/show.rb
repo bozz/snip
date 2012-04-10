@@ -13,7 +13,7 @@ module Snip
         raise NotInitializedError unless Snip::initialized?
         raise SnippetNotFoundError unless Snip::snippet_exists?(name)
 
-        puts File.read(File.join(Snip::INSTALL_DIR, name))
+        puts File.read(File.join(Snip::INSTALL_DIR, name)).color(:magenta)
       end
     end
   end
