@@ -28,6 +28,7 @@ lib/snip/util/editor.rb
   s.bindir = 'bin'
   s.executables << 'snip'
   s.add_runtime_dependency('gli', ["~> 1.4"])
+  s.add_runtime_dependency('rainbow', ["~> 1.1.3"])
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('minitest-reporters')

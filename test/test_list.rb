@@ -38,4 +38,12 @@ class TestList < Test::Unit::TestCase
     refute_match("aa_snippet", $stdout.string)
     refute_match("cc_snippet", $stdout.string)
   end
+
+  def test_show_first_line_of_snippet
+    add_snippet(["aa_snippet", "first line\nsecond line"])
+
+    list_snippets
+    assert_match("first line", $stdout.string)
+    refute_match("second line", $stdout.string)
+  end
 end
