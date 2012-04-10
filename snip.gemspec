@@ -17,6 +17,7 @@ lib/snip/commands.rb
 lib/snip/command/list.rb
 lib/snip/command/show.rb
 lib/snip/command/add.rb
+lib/snip/command/edit.rb
 lib/snip/command/run.rb
 lib/snip/command/remove.rb
 lib/snip/util/editor.rb

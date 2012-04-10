@@ -18,7 +18,11 @@ module Snip
 
         file_path = File.join(Snip::INSTALL_DIR, name)
         if content.nil?
-          Snip::Util::Editor::open(file_path)
+          if Snip::Util::Editor::open(file_path)
+            if File.exists?(file_path)
+              puts "Snippet created successfully"
+            end
+          end
         else
           File.open(file_path, 'w') do |f|
             f.puts content

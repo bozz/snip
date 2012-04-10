@@ -12,13 +12,11 @@ module Snip
         # open configured editor and redirect outputs
         `#{ENV['EDITOR']} "#{file_path}" 3>&1 1>&2 2>&3`
 
-        if $?.success?
-          if File.exists?(file_path)
-            puts "Snippet created successfully"
-          end
-        else
+        unless $?.success?
           puts "Error occured: " + $?.to_s
         end
+
+        $?
       end
     end
   end

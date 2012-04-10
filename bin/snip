@@ -74,6 +74,18 @@ command :show do |c|
 end
 
 
+desc 'Edit snippet'
+long_desc <<EOS
+  Edit the specified snippet.
+EOS
+arg_name 'snippet_name'
+command :edit do |c|
+  c.action do |global_options,options,arguments|
+    edit_snippet(arguments, options)
+  end
+end
+
+
 desc 'Run snippet'
 long_desc <<EOS
   Execute the specified snippet.
