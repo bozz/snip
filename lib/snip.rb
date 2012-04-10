@@ -1,3 +1,5 @@
+require 'rainbow'
+
 module Snip
 
   DEFAULT_DIR = '~/.snip'

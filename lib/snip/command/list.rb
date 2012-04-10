@@ -1,5 +1,4 @@
 require 'snip'
-require 'rainbow'
 
 module Snip
   module Command

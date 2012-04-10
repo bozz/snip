@@ -16,6 +16,7 @@ module Snip
         snippet = File.read(File.join(Snip::INSTALL_DIR, name))
 
         begin
+          puts snippet.color(:magenta)
           puts `#{snippet}`
         rescue
           raise ExecuteSnippetError
