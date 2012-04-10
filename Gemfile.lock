@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    snip (0.0.1)
+    snip (0.2.0)
       gli (~> 1.4)
 
 GEM

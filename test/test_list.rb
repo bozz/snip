@@ -27,4 +27,15 @@ class TestList < Test::Unit::TestCase
     list_snippets
     assert_empty($stdout.string)
   end
+
+  def test_filtering_listed_snippets
+    add_snippet(["aa_snippet", "first snippet"])
+    add_snippet(["bb_snippet", "second snippet"])
+    add_snippet(["cc_snippet", "third snippet"])
+
+    list_snippets('bb')
+    assert_match("bb_snippet", $stdout.string)
+    refute_match("aa_snippet", $stdout.string)
+    refute_match("cc_snippet", $stdout.string)
+  end
 end

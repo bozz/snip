@@ -52,8 +52,9 @@ end
 
 desc 'List snippets'
 long_desc <<EOS
-  List all existing snippets
+  List all existing snippets. Optional regex argument can be used to filter list.
 EOS
+arg_name 'regex'
 command :list do |c|
   c.action do |global_options,options,arguments|
     list_snippets(arguments, options)

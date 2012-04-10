@@ -4,7 +4,7 @@ module Snip
   module Command
     class Run
       def initialize(args, options={})
-        @args = args
+        @args = Array(args)
         @options = options
       end
 

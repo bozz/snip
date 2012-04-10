@@ -4,7 +4,7 @@ module Snip
   module Command
     class List
       def initialize(args=[], options={})
-        @args = args
+        @args = Array(args)
         @options = options
       end
 
@@ -13,6 +13,7 @@ module Snip
 
         Dir.foreach(Snip::INSTALL_DIR) do |file|
           next if file == '.' or file == '..'
+          next unless @args.empty? || file.match(@args.first)
           puts "#{file}"
         end
       end

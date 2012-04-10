@@ -7,7 +7,7 @@ module Snip
       include Snip
 
       def initialize(args, options={})
-        @args = args
+        @args = Array(args)
         @options = options
       end
 
